@@ -19,6 +19,10 @@ export default {
 			value = await env.DB.prepare("SELECT * FROM counters WHERE key = ?").bind(key).first();
 		}
 
-		return new Response(JSON.stringify(await value));
+		return new Response(JSON.stringify(await value), {
+			headers: {
+					'Access-Control-Allow-Origin': '*',
+			},
+	});
 	},
 };
